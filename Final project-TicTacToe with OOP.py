@@ -1,17 +1,17 @@
 #Tic Tac Toe
-#Note: I worked alone for this project.
+#Note: I worked alone for this project. I already put it in Github:
+#https://www.github.com/Stunion235/TicTacToe
 
-#ADDED FEATURES:
-#Defined a hint() function that is called if the user types 'hint' for a move.
-#Implemented a __repr__() for the TicTacToe class.
-#Prints instructions and tells the user is a move is not valid.
+#ADDED USER-FRIENDLY IMPROVEMENTS:
+# 1. Defined a getHint() function that is called if the user types 'hint' for a move.
+# 2. Implemented a __repr__() for the TicTacToe class if the user wants to print it.
+# 3. Prints instructions and can tell the user is a move is not valid.
 
 import random
 
-
 class TicTacToe():
     def __repr__(self):
-        return('<\nClass Name: ' + self.__class__.__name__ + '\nCurrent Turn: Player ' + str(turn) + '\nBest Move: ' + str(self.hint()) + '\nTied: ' + str(self.isBoardFull(theBoard)) + '\nGame over: ' + str(not(gameIsPlaying)) + '\n>')
+        return('<\nClass Name: ' + self.__class__.__name__ + '\nCurrent Turn: Player ' + str(turn) + '\nBest Move: ' + str(self.getHint()) + '\nTied: ' + str(self.isBoardFull(theBoard)) + '\nGame over: ' + str(not(gameIsPlaying)) + '\n>')
     def drawBoard(self, board):
         # This function prints out the board that it was passed.
 
@@ -53,7 +53,7 @@ class TicTacToe():
         (bo[9] == le and bo[5] == le and bo[1] == le)) # diagonal
 
     def getBoardCopy(self, board):
-        # Make a duplicate of the board list and return it the duplicate.
+        # Make a duplicate of the board list and return the duplicate.
         dupeBoard = []
 
         for i in board:
@@ -81,9 +81,9 @@ class TicTacToe():
                 move = '0'
             #Do the appropriate task if the user typed "hint" or "?".
             elif move.lower() == 'hint':
-                print('Hint:', self.getComputerMove(theBoard, '0'), '\n')
+                print('Hint:', self.getHint(), '\n')
             elif move == '?':
-                self.instructions()
+                self.printInstructions()
         return int(move)
 
     def chooseRandomMoveFromList(self, board, movesList):
@@ -143,22 +143,25 @@ class TicTacToe():
         return True
 
     #Uses the getComputerMove() function to provide the player with a hint.
-    def hint(self):
+    def getHint(self):
         return(game.getComputerMove(theBoard, '0'))
 
     #Print the instructions if user types "?" for a move.
-    def instructions(self):
+    def printInstructions(self):
         print('='*23)
         print('Instructions:')
-        print('When you are asked for a move, enter a number from 1-9.')
-        print('They correspond to the spaces in the same way as the keys on a numeric keypad.')
-        print('You can also type "hint" for a hint or "?" to see these instructions.')    
+        print('When you are asked for a move, enter a number from 1-9 and press enter.')
+        print('They correspond to the spaces in the same way as the keys on a numeric keypad:\n')
+        print('7 8 9')
+        print('4 5 6')
+        print('1 2 3')
+        print('\nYou can also type "hint" for a hint or "?" to see these instructions.')    
         print('='*78)
 
 #Define the object game to be of the class TicTacToe.     
 game = TicTacToe()
 print('\nWelcome to Tic Tac Toe!'.upper())
-game.instructions()
+game.printInstructions()
 while True:
     #Reset the board
     theBoard = [' '] * 10
@@ -175,7 +178,7 @@ while True:
             move = game.getPlayerMove(theBoard)
             game.makeMove(theBoard, Letter1, move)
             print()
-
+            #Check if Player 1 won or for a tie.
             if game.isWinner(theBoard, Letter1):
                 game.drawBoard(theBoard)
                 print('Player 1 has won the game!')
@@ -194,7 +197,7 @@ while True:
             move = game.getPlayerMove(theBoard)
             game.makeMove(theBoard, Letter2, move)
             print()
-
+            #Check if Player 2 won or for a tie.
             if game.isWinner(theBoard, Letter2):
                 game.drawBoard(theBoard)
                 print('Player 2 has won the game!')

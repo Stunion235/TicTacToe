@@ -5,29 +5,29 @@ The game should provide instructions for the user so they can play and navigate 
 
 # Design
 The class called TicTacToe implements the game and its operation. The board itself is represented and interpreted within the class and its functions as a list of strings. The class has functions to do the following:
-1. drawBoard(board), which prints the board. It will be called before each turn.
-2. whoGoesFirst(), which picks someone to go first. It is run once at the beginning of each game.
-3. makeMove(board, letter, move), which is used to represent the players' moves by putting their move into the board data if it is valid.
-4. getHint(), which is simply used to give the player hints.
-5. getBoardCopy(board), which defines a temporary duplicate of the board. The reason for this is to let the AI "think" without affecting the board that the players see.
-6. isSpaceFree(board, move), which is used to check if a desired space is vacant on the board. It returns one Boolean value, True if the space is free and False otherwise. 
-7. getPlayerMove(board), which processes player moves.
-8. isBoardFull(board), which will check if the board is full. Such a full board constitutes a tie.
-9. isWinner(board, letter), which checks if a given move will result in a victory for either player.
-10. \_\_repr()\_\_, which is a system function for any classes that lets its object be printed readably.
+1. *drawBoard(board)*, which prints the board. It will be called before each turn.
+2. *whoGoesFirst()*, which picks someone to go first. It is run once at the beginning of each game.
+3. *makeMove(board, letter, move)*, which is used to represent the players' moves by putting their move into the board data if it is valid.
+4. *getHint()*, which is simply used to give the player hints.
+5. *getBoardCopy(board)*, which defines a temporary duplicate of the board. The reason for this is to let the AI "think" without affecting the board that the players see.
+6. *isSpaceFree(board, move)*, which is used to check if a desired space is vacant on the board. It returns one Boolean value, True if the space is free and False otherwise. 
+7. *getPlayerMove(board)*, which processes player moves.
+8. *isBoardFull(board)*, which will check if the board is full. Such a full board constitutes a tie.
+9. *isWinner(board, letter)*, which checks if a given move will result in a victory for either player.
+10. *\_\_repr()\_\_*, which is a system function for any classes that lets its object be printed readably.
 
-Structure of the main program
+**Structure of the main program**
  * Create an object called game, of the TicTacToe class. 
- * Print the instructions for the players using the printInstructions() class function. 
+ * Print the instructions for the players using the *printInstructions()* class function. 
  * As long as players want to play the game:
-    1. Pick someone to make the first move using whoGoesFirst().
-    2. Print the ASCII representation of the board using drawBoard().
-    3. Ask for and interpret the player's move using getPlayerMove().
-    4. Represent and register that move using makeMove().
-    5. Check if that player won or tied using isWinner() and isBoardFull(), in which case skip step 6.
+    1. Pick someone to make the first move using *whoGoesFirst()*.
+    2. Print the ASCII representation of the board using *drawBoard()*.
+    3. Ask for and interpret the player's move using *getPlayerMove()*.
+    4. Represent and register that move using *makeMove()*.
+    5. Check if that player won or tied using *isWinner()* and *isBoardFull()* respectively, in which case skip step 6.
     6. Pass the turn to the other player and return to step 1, starting a new turn.
  * End the game. If the players want to replay, then reset the board and go back to step 1. If not, break the loop.
 
-Design notes:
- * During getPlayerMove(), if the player types "?", the printInstructions() function is called to show the instructions. Likewise, if they type "hint" instead of making a move, then the function getHint() is called to provide a hint. getHint() in turn uses a series of other functions inside the TicTacToe class, which allows the computer to determine the best move, or one of the best moves. The algorithm used in getHint() is described in the code comments in the program. 
- * The end of the program uses the playAgain() function to ask the players if they'd like to play again. If they do, then it returns True, which allows the loop to reiterate, which in effect restarts the game. If they don't, however, the function returns False, which causes the loop to terminate, ending the program.
+**Design notes:**
+ * During *getPlayerMove()*, if the player types "?", the *printInstructions()* function is called to show the instructions. Likewise, if they type "hint" instead of making a move, then the function *getHint()* is called to provide a hint. *getHint()* in turn uses a series of other functions inside the TicTacToe class, which allows the computer to determine the best move, or one of the best moves. The algorithm used in *getHint()* is described in the code comments in the program. 
+ * The end of the program uses the *playAgain()* function to ask the players if they'd like to play again. If they do, then it returns True, which allows the loop to reiterate, which in effect restarts the game. If they don't, however, the function returns False, which causes the loop to terminate, ending the program.

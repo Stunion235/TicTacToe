@@ -16,13 +16,18 @@ The class called TicTacToe implements the game and its operation. The board itse
 9. isWinner(board, letter), which checks if a given move will result in a victory for either player.
 10. \_\_repr()\_\_, which is a system function for any classes that lets its object be printed readably.
 
-The main code creates an object called game, of the TicTacToe class. The program then prints instructions for the players using the printInstructions() class function. Next a while loop is used to let the game be replayed as many times as the players want. If they want to stop playing, then the program breaks the loop. For each game, the program:
-1. Picks someone to make the first move using whoGoesFirst().
-2. Prints the ASCII representation of the board using drawBoard().
-3. Asks for and interprets the player's move using getPlayerMove().
-4. Represents and registers that move using makeMove().
-5. Checks if that player won or tied using isWinner() and isBoardFull(), in which case skip step 6.
-6. Passes the turn to the other player and return to step 2, starting a new turn.
-7. Ends the game. If the players want to replay, then reset the board and go back to step 1. If not, break the loop.
+Structure of the main program
+ * Create an object called game, of the TicTacToe class. 
+ * Print the instructions for the players using the printInstructions() class function. 
+ * As long as players want to play the game:
+    1. Pick someone to make the first move using whoGoesFirst().
+    2. Print the ASCII representation of the board using drawBoard().
+    3. Ask for and interpret the player's move using getPlayerMove().
+    4. Represent and register that move using makeMove().
+    5. Check if that player won or tied using isWinner() and isBoardFull(), in which case skip step 6.
+    6. Pass the turn to the other player and return to step 1, starting a new turn.
+ * End the game. If the players want to replay, then reset the board and go back to step 1. If not, break the loop.
 
-During getPlayerMove(), if the player types "?", the printInstructions() function is called to show the instructions. Likewise, if they type "hint" instead of making a move, then the function getHint() is called to provide a hint. getHint() in turn uses a series of other functions inside the TicTacToe class, which allows the computer to determine the best move, or one of the best moves. How the algorithm used in getHint() works is described in the code comments in the program. Finally, the end of the program uses the playAgain() function to ask the players if they'd like to play again. If they do, then it returns True, which allows the loop to restart, which in effect restarts the game. If they don't, however, the function returns False, which causes the loop to terminate, ending the program.
+Design notes:
+ * During getPlayerMove(), if the player types "?", the printInstructions() function is called to show the instructions. Likewise, if they type "hint" instead of making a move, then the function getHint() is called to provide a hint. getHint() in turn uses a series of other functions inside the TicTacToe class, which allows the computer to determine the best move, or one of the best moves. The algorithm used in getHint() is described in the code comments in the program. 
+ * The end of the program uses the playAgain() function to ask the players if they'd like to play again. If they do, then it returns True, which allows the loop to reiterate, which in effect restarts the game. If they don't, however, the function returns False, which causes the loop to terminate, ending the program.

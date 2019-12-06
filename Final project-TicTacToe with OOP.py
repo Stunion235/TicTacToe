@@ -146,7 +146,7 @@ class TicTacToe():
 
     #Uses the getComputerMove() function to provide the player with a hint.
     def getHint(self):
-        return(game.getComputerMove(theBoard, '0'))
+        return(game.getComputerMove(theBoard, ['X', 'O'][turn - 1]))
 
     #Print the instructions if user types "?" for a move.
     def printInstructions(self):
@@ -213,3 +213,4 @@ while True:
 
     if not game.playAgain():
         break
+        

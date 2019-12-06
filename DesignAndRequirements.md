@@ -1,15 +1,28 @@
 # Requirements
-This program is a Tic-Tac-Toe game than can run directly in the IDE without importing anything that isn't built-in. It first prints the instructions for the user. Then it randomly chooses  player 1 or 2 to go first. They will be asked to make a move on an ASCII board by entering a number from 1 to 9, with each number corresponding to one space. It then prints the board, with the desired move represented as an X or an O cha in that "space" depending on the symbol that they were assigned. The user is told if their move is invalid for any reason. They can also type "hint" to get a hint from the computer or "?" to see the instructions. Then the turn passes to the next player. This process repeats until the board is full or until one player has won by getting three in a row. The players are asked if they would like to replay the game. Typing anything starting with "y" should replay the game. Typing anything else will not.
+The purpose of this program is to simulate a two-player Tic-Tac-Toe game. The objective of Tic-Tac-Toe is for each player to take turns placing X's or O's on a 3 by 3 board with the aim of getting three of their symbol in a row, column, or diagonal, while preventing the other player from doing so. The first player to achieve this is the winner. If no player can do this, there is a tie.
+
+The game should provide instructions for the user so they can play and navigate the game. Then it should randomly choose player 1 or 2 to go first. The player can then make a move on an ASCII board by entering a number from 1 to 9, with each number corresponding to one space in the virtual 3 by 3 board. The mapping of numbers to spaces is the same as the arrangement of numbers on a numeric keypad. Before each turn, the program should print the board's current state, with all the past moves represented as an X or an O character in their respective "spaces". If the user makes an invalid move, then the program should let them know. That should happen if the desired space is already occupied by a symbol, or if they did not type a number from 1 to 9. Users should also be able to type "hint" to get a hint from the computer or "?" to see the instructions. Then the turn should pass to the next player, as with a normal game of Tic-Tac-Toe. Players should be able to play in this manner until the board is full, which is a tie, or until one player has won by getting three in a row. Then, the players will choose if they would like to play a new game by typing anything starting with "y". If anything else is typed, then the game should end.
 
 # Design
-First, there's a class called TicTacToe that contains all the main functions. It has functions that draw the board, pick someone to go first, make moves, get hints, define a temporary duplicate of the board, check if a space is vacant, process player moves, and check if the board is full (tie). TicTacToe also has a representation function if the user wants to print its object. First an object called game is created using the TicTacToe class. First, the program will print instructions for the user using the instructions function that is in the TicTacToe class. Next a while loop is used to let the game be replayed as many times as the user wants. If the user wants to stop playing, then the program breaks the loop. The whoGoesFirst() function randomly selects a player to go first. The turn value is set to the output of that function. Then, for each 
-game, the program will do the following:
+The game is implemented using a class called TicTacToe. The board itself is represented and interpreted within the class and its functions as a list of strings. The class has functions to do the following:
+1. drawBoard(board), which prints the board. It will be called before each turn.
+2. whoGoesFirst(), which picks someone to go first. It is run once at the beginning of each game.
+3. makeMove(board, letter, move), which is used to represent the players' moves by putting their move into the board data if it is valid.
+4. getHint(), which is simply used to give the player hints.
+5. getBoardCopy(board), which defines a temporary duplicate of the board. The reason for this is to let the AI "think" without affecting the board that the players see.
+6. isSpaceFree(board, move), which is used to check if a desired space is vacant on the board. It returns one Boolean value, True if the space is free and False otherwise. 
+7. getPlayerMove(board), which processes player moves.
+8. isBoardFull(board), which will check if the board is full. Such a full board constitutes a tie.
+9. isWinner(board, letter), which checks if a given move will result in a victory for either player.
+10. \_\_repr()\_\_, which is a system function for any classes that lets its object be printed readably.
 
-1. Print the board using an ASCII representation.
-2. Use getPlayerMove() to interpret the move that player wanted to make.
-3. Use makeMove() to actually represent and register that move.
-4. Check if that player won or tied, in which case skip step 5.
-5. Pass the turn to the other player and return to step 1.
-6. End the game. If the user wants to replay, then reset the board and go back to step 1. If not, break the loop.
+The main code creates an object called game, of the TicTacToe class. The program then prints instructions for the players using the printInstructions() class function. Next a while loop is used to let the game be replayed as many times as the players want. If they want to stop playing, then the program breaks the loop. For each game, the program:
+1. Picks someone to make the first move using whoGoesFirst().
+2. Prints the ASCII representation of the board using drawBoard().
+3. Asks for and interprets the player's move using getPlayerMove().
+4. Represents and registers that move using makeMove().
+5. Checks if that player won or tied using isWinner() and isBoardFull(), in which case skip step 6.
+6. Passes the turn to the other player and return to step 2, starting a new turn.
+7. Ends the game. If the players want to replay, then reset the board and go back to step 1. If not, break the loop.
 
-If the player wants to see the instructions, they can type "?" to call the printInstructions() function. It simply prints the instructions. If they type "hint" instead of making a move, then the function getHint() is called. It in turn uses a series of other functions inside the TicTacToe class, which allows the computer to determine the best move, or one of the best moves. How it works is described in the code comments in the program. Finally, the end of the program uses the playAgain() function to ask the user if they'd like to play again. If they do, then it returns True, which allows the loop to restart, which in effect restarts the game. If they don't, however, the function returns False, which causes the loop to terminate, ending the program.
+During getPlayerMove(), if the player types "?", the printInstructions() function is called to show the instructions. Likewise, if they type "hint" instead of making a move, then the function getHint() is called to provide a hint. getHint() in turn uses a series of other functions inside the TicTacToe class, which allows the computer to determine the best move, or one of the best moves. How the algorithm used in getHint() works is described in the code comments in the program. Finally, the end of the program uses the playAgain() function to ask the players if they'd like to play again. If they do, then it returns True, which allows the loop to restart, which in effect restarts the game. If they don't, however, the function returns False, which causes the loop to terminate, ending the program.

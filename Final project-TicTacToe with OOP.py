@@ -1,17 +1,19 @@
 #Tic Tac Toe
-#Note: I worked alone for this project. I already put it in Github:
-#https://www.github.com/Stunion235/TicTacToe
+#Note: I worked alone for this project.
 
 #ADDED USER-FRIENDLY IMPROVEMENTS:
 # 1. Defined a getHint() function that is called if the user types 'hint' for a move.
 # 2. Implemented a __repr__() for the TicTacToe class if the user wants to print it.
-# 3. Prints instructions and can tell the user is a move is not valid.
+# 3. Created a printInstructions() function to print the instructions
+# 4. Changed the getPlayerMove() function to alert the user if a move is invalid.
 
 import random
 
 class TicTacToe():
+
     def __repr__(self):
         return('<\nClass Name: ' + self.__class__.__name__ + '\nCurrent Turn: Player ' + str(turn) + '\nBest Move: ' + str(self.getHint()) + '\nTied: ' + str(self.isBoardFull(theBoard)) + '\nGame over: ' + str(not(gameIsPlaying)) + '\n>')
+
     def drawBoard(self, board):
         # This function prints out the board that it was passed.
 
